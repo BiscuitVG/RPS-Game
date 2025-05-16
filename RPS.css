@@ -1,0 +1,62 @@
+body{
+  background-color: wheat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.GameTitle{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: xx-large;
+  font-weight: bold;
+  color: orange;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+button{
+  margin-bottom: 10px;
+}
+
+.StackButtons{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.RockBtn{
+  background-color: lightskyblue;
+  color: white;
+  height: 100px;
+  width: 200px;
+  border-radius: 10px;
+  border-color: white;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.PaperBtn{
+  background-color: lightskyblue;
+  color: white;
+  height: 100px;
+  width: 200px;
+  border-radius: 10px;
+  border-color: white;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.ScissorBtn{
+  background-color: lightskyblue;
+  color: white;
+  height: 100px;
+  width: 200px;
+  border-radius: 10px;
+  border-color: white;
+  font-weight: bold;
+  font-size: larger;
+}
