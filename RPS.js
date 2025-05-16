@@ -4,73 +4,76 @@ const Rock = document.querySelector(".RockBtn");
 const Paper = document.querySelector(".PaperBtn");
 const Scissor = document.querySelector(".ScissorBtn");
 
-let computerHand;
-let playerHand;
-let playerResult;
+// let computerHand;
+//let playerHand;
+//let playerResult;
 
-Rock.onclick = function(){
-  const rockValue = Math.random();
-  console.log(rockValue);
+const pickComputerMove = function () {
+  let computerHand;
+  const pickRate = Math.random();
+  console.log(pickRate);
 
-  playerHand = "Rock";
-
-  if(rockValue >= 0 && rockValue < 1/3){
+  if (pickRate >= 0 && pickRate < 1 / 3) {
     computerHand = "Rock";
-    playerResult = "draw!";
-    alert(`Player selected ${playerHand}, Computer selected ${computerHand}. Hence Player ${playerResult}`);
-  }
-  else if (rockValue >= 1/3 && rockValue < 2/3) {
+  } else if (pickRate >= 1 / 3 && pickRate < 2 / 3) {
     computerHand = "Paper";
-    playerResult = "lose!";
-    alert(`Player selected ${playerHand}, Computer selected ${computerHand}. Hence Player ${playerResult}`);
   } else {
     computerHand = "Scissor";
-    playerResult = "win!";
-    alert(`Player selected ${playerHand}, Computer selected ${computerHand}. Hence Player ${playerResult}`);
   }
+  return computerHand;
+};
+
+const playGame = function (playerMove) {
+  let computerMove = pickComputerMove();
+  let playerResult;
+  console.log(computerMove);
+
+  if (playerMove === "Rock") {
+    if (computerMove === "Rock") {
+      playerResult = "tie";
+    } else if (computerMove === "Paper") {
+      playerResult = "lose";
+    } else {
+      playerResult = "win";
+    }
+    alert(
+      `The Player picked Rock. The Computer picked ${computerMove}, Hence Player ${playerResult}!`
+    );
+
+  } else if (playerMove === "Paper") {
+    if (computerMove === "Rock") {
+      playerResult = "win";
+    } else if (computerMove === "Paper") {
+      playerResult = "tie";
+    } else {
+      playerResult = "lose";
+    }
+    alert(
+      `The Player picked Paper. The Computer picked ${computerMove}, Hence Player ${playerResult}!`
+    );
+
+  } else {
+    if (computerMove === "Rock") {
+      playerResult = "lose";
+    } else if (computerMove === "Paper") {
+      playerResult = "win";
+    } else {
+      playerResult = "tie";
+    }
+    alert(
+      `The Player picked Scissor. The Computer picked ${computerMove}, Hence Player ${playerResult}!`
+    );
+  }
+};
+
+Rock.onclick = function(){
+  playGame("Rock");
 };
 
 Paper.onclick = function(){
-  const paperValue = Math.random();
-  console.log(paperValue);
-
-  playerHand = "Paper";
-
-  if(paperValue >= 0 && paperValue < 1/3){
-    computerHand = "Rock";
-    playerResult = "win!";
-    alert(`Player selected ${playerHand}, Computer selected ${computerHand}. Hence Player ${playerResult}`);
-  }
-  else if (paperValue >= 1/3 && paperValue < 2/3) {
-    computerHand = "Paper";
-    playerResult = "draw!";
-    alert(`Player selected ${playerHand}, Computer selected ${computerHand}. Hence Player ${playerResult}`);
-  } else {
-    computerHand = "Scissor";
-    playerResult = "lose!";
-    alert(`Player selected ${playerHand}, Computer selected ${computerHand}. Hence Player ${playerResult}`);
-  }
+  playGame("Paper");
 };
 
 Scissor.onclick = function(){
-  const scissorValue = Math.random();
-  console.log(scissorValue);
-
-  playerHand = "Scissor";
-
-  if(scissorValue >= 0 && scissorValue < 1/3){
-    computerHand = "Rock";
-    playerResult = "lose!";
-    alert(`Player selected ${playerHand}, Computer selected ${computerHand}. Hence Player ${playerResult}`);
-  }
-  else if (scissorValue >= 1/3 && scissorValue < 2/3) {
-    computerHand = "Paper";
-    playerResult = "win!";
-    alert(`Player selected ${playerHand}, Computer selected ${computerHand}. Hence Player ${playerResult}`);
-  } else {
-    computerHand = "Scissor";
-    playerResult = "draw!";
-    alert(`Player selected ${playerHand}, Computer selected ${computerHand}. Hence Player ${playerResult}`);
-  }
+  playGame("Scissor");
 };
-
