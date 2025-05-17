@@ -3,6 +3,7 @@ alert("Lets play!");
 const Rock = document.querySelector(".RockBtn");
 const Paper = document.querySelector(".PaperBtn");
 const Scissor = document.querySelector(".ScissorBtn");
+const Reset = document.querySelector(".ResetBtn");
 
 // let computerHand;
 //let playerHand;
@@ -23,6 +24,12 @@ const pickComputerMove = function () {
   return computerHand;
 };
 
+const score = {
+  wins: 0,
+  losses: 0,
+  ties: 0
+};
+
 const playGame = function (playerMove) {
   let computerMove = pickComputerMove();
   let playerResult;
@@ -36,9 +43,6 @@ const playGame = function (playerMove) {
     } else {
       playerResult = "win";
     }
-    alert(
-      `The Player picked Rock. The Computer picked ${computerMove}, Hence Player ${playerResult}!`
-    );
 
   } else if (playerMove === "Paper") {
     if (computerMove === "Rock") {
@@ -48,9 +52,6 @@ const playGame = function (playerMove) {
     } else {
       playerResult = "lose";
     }
-    alert(
-      `The Player picked Paper. The Computer picked ${computerMove}, Hence Player ${playerResult}!`
-    );
 
   } else {
     if (computerMove === "Rock") {
@@ -60,10 +61,21 @@ const playGame = function (playerMove) {
     } else {
       playerResult = "tie";
     }
-    alert(
-      `The Player picked Scissor. The Computer picked ${computerMove}, Hence Player ${playerResult}!`
-    );
   }
+
+  if (playerResult === "win"){
+    score.wins += 1;
+  }
+  else if (playerResult === "lose"){
+    score.losses += 1;
+  }
+  else {
+    score.ties += 1;
+  }
+
+  alert(
+      `The Player picked ${playerMove}. The Computer picked ${computerMove}, Hence Player ${playerResult}! \nWins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`
+    );
 };
 
 Rock.onclick = function(){
@@ -76,4 +88,12 @@ Paper.onclick = function(){
 
 Scissor.onclick = function(){
   playGame("Scissor");
+};
+
+Reset.onclick = function(){
+  score.wins = 0;
+  score.losses = 0;
+  score.ties = 0;
+
+  alert(`Score has been reset. Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
 };
