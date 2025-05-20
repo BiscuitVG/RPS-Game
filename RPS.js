@@ -1,9 +1,10 @@
-alert("Lets play!");
+//alert("Lets play!");
 
 const Rock = document.querySelector(".RockBtn");
 const Paper = document.querySelector(".PaperBtn");
 const Scissor = document.querySelector(".ScissorBtn");
 const Reset = document.querySelector(".ResetBtn");
+const DisplayScore = document.querySelector(".scoreText");
 
 // let computerHand;
 //let playerHand;
@@ -30,6 +31,8 @@ let score = JSON.parse(localStorage.getItem("score"))
   losses: 0,
   ties: 0
 };
+
+//updateScoreElement();
 
 const playGame = function (playerMove) {
   let computerMove = pickComputerMove();
@@ -64,6 +67,7 @@ const playGame = function (playerMove) {
     }
   }
 
+  //update score
   if (playerResult === "win"){
     score.wins += 1;
   }
@@ -74,12 +78,18 @@ const playGame = function (playerMove) {
     score.ties += 1;
   }
 
+  updateScoreElement();
+
   //local storage
   localStorage.setItem("score", JSON.stringify(score));
 
   alert(
       `The Player picked ${playerMove}. The Computer picked ${computerMove}, Hence Player ${playerResult}! \nWins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`
-    );
+  );
+};
+
+const updateScoreElement = function(){
+  DisplayScore.innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
 };
 
 Rock.onclick = function(){
